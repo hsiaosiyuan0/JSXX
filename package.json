@@ -1,0 +1,34 @@
+{
+  "name": "jsxx",
+  "version": "0.0.1",
+  "description": "A template engine similar with JSX and supports more flexible statements.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hsiaosiyuan0",
+  "license": "MIT",
+  "dependencies": {
+    "antlr4": "^4.7.0",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2017": "^6.24.1",
+    "eslint": "^4.2.0",
+    "eslint-loader": "^1.9.0",
+    "shortid": "^2.2.8",
+    "webpack": "^3.3.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hsiaosiyuan0/JSXX.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hsiaosiyuan0/JSXX/issues"
+  },
+  "homepage": "https://github.com/hsiaosiyuan0/JSXX#readme"
+}
