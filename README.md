@@ -20,16 +20,16 @@
 
 ```js
 function render (__ctx__) {
-  h("h3", [], [__ctx__.title])
+  return h("h3", [], [__ctx__.title])
 }
 ```
 
 调用方式为:
 
 ```js
-render({
+const vnode = render({
   title: "jsxx"
 })
 ```
 
-这是一个在浏览器中使用该模板的 [例子]()，它的代码在 [这里]()
+这是一个在浏览器中使用该模板的 [例子](http://jsxx.hsiaosiyuan.com/)，它的代码在 [这里](https://github.com/hsiaosiyuan0/JSXX/tree/master/test/browser)
