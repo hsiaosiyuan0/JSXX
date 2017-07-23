@@ -7,13 +7,15 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>demo</title>
   <style>
-    #source {
+    div.part {
       width: 300px;
-      height: 300px;
+      float: left;
+      margin-right: 20px;
     }
 
     textarea {
-      float: left;
+      width: 100%;
+      height: 300px;
     }
 
     #out {
@@ -28,21 +30,32 @@
 </head>
 <body>
 <div style="overflow: hidden">
-  <textarea id="source">
-  <div>
-    <h3>Class Number: { classNum }</h3>
-    <ul>
-    { for stu in students }
-      <li onClick={ sayHi(stu.name) }>
-        <span>name: { stu.name }</span>
-        <span>sex: { stu.sex ? "boy" : "girl" }</span>
-        <span>age: { stu.age }</span>
-      </li>
-    { end }
-    </ul>
+  <div class="part">
+    <h3>Template:</h3>
+    <textarea id="source">
+    <div>
+      <h3>Class Number: { classNum }</h3>
+      <ul>
+      { for stu in students }
+        <li onClick={ sayHi(stu.name) }>
+          <span>name: { stu.name }</span>
+          <span>sex: { stu.sex ? "boy" : "girl" }</span>
+          <span>age: { stu.age }</span>
+        </li>
+      { end }
+      </ul>
+    </div>
+    </textarea>
   </div>
-  </textarea>
-  <div id="out"></div>
+  <div class="part">
+    <h3>Context:</h3>
+    <textarea id="ctx" readonly>
+    </textarea>
+  </div>
+  <div class="part">
+    <h3>Result:</h3>
+    <div id="out"></div>
+  </div>
 </div>
 <div>
   <button id="btn">run</button>

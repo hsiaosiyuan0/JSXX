@@ -1,8 +1,31 @@
 import {gen} from "../../src"
 
 const sourceEl = document.getElementById("source")
+const ctxEl = document.getElementById("ctx")
 const btn = document.getElementById("btn")
 const out = document.getElementById("out")
+
+const ctx = {
+  classNum: "CS01",
+  students: [{
+    name: "Tom",
+    sex: 1,
+    age: 20
+  }, {
+    name: "Jim",
+    sex: 1,
+    age: 19
+  }, {
+    name: "Liza",
+    sex: 0,
+    age: 18
+  }],
+  sayHi (name) {
+    console.log(`hello ${name}`)
+  }
+}
+
+ctxEl.value = JSON.stringify(ctx, null, 2)
 
 function run () {
   const source = sourceEl.value
@@ -11,31 +34,14 @@ function run () {
     return {type, props, children}
   }
 
+  console.time("Code generation")
   const res = gen(source)
+  console.timeEnd("Code generation")
+
   // render fun
   console.groupCollapsed("Compiled render function:")
   console.log(res.render.toString())
   console.groupEnd()
-
-  const ctx = {
-    classNum: "CS01",
-    students: [{
-      name: "Tom",
-      sex: 1,
-      age: 20
-    }, {
-      name: "Jim",
-      sex: 1,
-      age: 19
-    }, {
-      name: "Liza",
-      sex: 0,
-      age: 18
-    }],
-    sayHi (name) {
-      console.log(`hello ${name}`)
-    }
-  }
 
   function createElement (vnode) {
     if (typeof vnode === "string") {
