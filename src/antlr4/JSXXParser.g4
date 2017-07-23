@@ -25,7 +25,7 @@ forStmt
   ;
 
 forBegin
-  : exprOpen For Identifier In singleExpr exprClose
+  : exprOpen For (Identifier | '(' Identifier ',' Identifier ')') In singleExpr exprClose
   ;
 
 exprOpen
@@ -60,6 +60,7 @@ elseBranch
 attribute
   : TagInsideName AttrEquals AttrVal
   | TagInsideName '=' expr
+  | TagInsideName
   ;
 
 expr
@@ -67,19 +68,19 @@ expr
   ;
 
 singleExpr
-  : singleExpr '[' singleExpr ']'                                   # MemberIndexExpr
-  | singleExpr '.' Identifier                                       # MemberDotExpr
-  | singleExpr arguments                                            # FunCallExpr
-  | singleExpr ( '*' | Divide | '%' ) singleExpr                    # MultiplyExpr
-  | singleExpr ( '+' | '-' ) singleExpr                             # AddExpr
-  | singleExpr ( LessThan | MoreThan | '<=' | '>=' ) singleExpr     # RelationalExpr
-  | singleExpr ( '==' | '!=' ) singleExpr                           # EqualityExpr
-  | singleExpr '&&' singleExpr                                      # LogicalAndExpr
-  | singleExpr '||' singleExpr                                      # LogicalOrExpr
-  | singleExpr '?' singleExpr ':' singleExpr                        # TernaryExpr
-  | Identifier                                                      # IdentifierExpr
-  | literal                                                         # LiteralExpr
-  | '(' singleExpr ')'                                              # ParenExpr
+  : singleExpr '[' singleExpr ']'                                       # MemberIndexExpr
+  | singleExpr '.' Identifier                                           # MemberDotExpr
+  | singleExpr arguments                                                # FunCallExpr
+  | singleExpr op=( '*' | Divide | '%' ) singleExpr                     # MultiplyExpr
+  | singleExpr op=( '+' | '-' ) singleExpr                              # AddExpr
+  | singleExpr op=( LessThan | MoreThan | '<=' | '>=' ) singleExpr      # RelationalExpr
+  | singleExpr op=( '==' | '!=' ) singleExpr                            # EqualityExpr
+  | singleExpr op='&&' singleExpr                                       # LogicalAndExpr
+  | singleExpr op='||' singleExpr                                       # LogicalOrExpr
+  | singleExpr '?' singleExpr ':' singleExpr                            # TernaryExpr
+  | Identifier                                                          # IdentifierExpr
+  | literal                                                             # LiteralExpr
+  | '(' singleExpr ')'                                                  # ParenExpr
   ;
 
 arguments
@@ -92,6 +93,7 @@ argumentList
 
 literal
   : ( NullLiteral
+    | UndefinedLiteral
     | BooleanLiteral
     | StringLiteral
     )
@@ -111,7 +113,7 @@ comment
   ;
 
 reference
-  : HTMLCharRef+
+  : HTMLCharRef
   ;
 
 charData

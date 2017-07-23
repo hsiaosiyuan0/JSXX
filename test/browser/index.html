@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>demo</title>
+  <style>
+    #source {
+      width: 300px;
+      height: 300px;
+    }
+
+    textarea {
+      float: left;
+    }
+
+    #out {
+      float: left;
+      margin-left: 20px;
+    }
+
+    li span {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<div style="overflow: hidden">
+  <textarea id="source">
+  <div>
+    <h3>Class Number: { classNum }</h3>
+    <ul>
+    { for stu in students }
+      <li onClick={ sayHi(stu.name) }>
+        <span>name: { stu.name }</span>
+        <span>sex: { stu.sex ? "boy" : "girl" }</span>
+        <span>age: { stu.age }</span>
+      </li>
+    { end }
+    </ul>
+  </div>
+  </textarea>
+  <div id="out"></div>
+</div>
+<div>
+  <button id="btn">run</button>
+</div>
+<script src="dist/app.js"></script>
+</body>
+</html>

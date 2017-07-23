@@ -1,10 +1,19 @@
 {
   "presets": [
-    "es2017"
+    ["env", {
+      "targets": {
+        "node": "current"
+      },
+      "useBuiltIns": true
+    }]
   ],
   "plugins": [
     "transform-es2015-modules-commonjs",
+    "transform-decorators-legacy",
     "transform-class-properties",
     "transform-object-rest-spread"
+  ],
+  "ignore":[
+    "src/antlr4/**/*.js"
   ]
 }
