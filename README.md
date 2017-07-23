@@ -32,4 +32,54 @@ const vnode = render({
 })
 ```
 
+在来一个复杂一点的例子，比如有如下模板:
+
+```html
+<div>
+  <ul>
+    { for item in items }
+      <li>
+        <ul>
+          { for child in item.children }
+            <li>{ item.name + " " + child.name }</li>
+          { end }
+        </ul>
+      </li>
+    { end }
+  </ul>
+</div>
+```
+
+会生成类似下面的 render function:
+
+```js
+function render (__ctx__, h) {
+  function __loop__ (obj, cb) {
+    if (Array.isArray(obj)) {
+      return obj.reduce(function (prev, e, i) {
+        return prev.concat(cb(e, i))
+      }, [])
+    } else {
+      return Object.keys(obj).map(function (prev, key) {
+        return prev.concat(cb(obj[key], key))
+      }, [])
+    }
+  }
+
+  function forSkeKYBzzUW (item) {
+    return __loop__(item.children, function (child) {
+      return [h("li", [], [(item.name + " " + child.name) + ""])]
+    })
+  }
+
+  function forHJtYSMzIW () {
+    return __loop__(__ctx__.items, function (item) {
+      return [h("li", [], [h("ul", [], [forSkeKYBzzUW(item)])])]
+    })
+  }
+
+  return h("div", [], [h("ul", [], [forHJtYSMzIW()])])
+}
+```
+
 这是一个在浏览器中使用该模板的 [例子](http://jsxx.hsiaosiyuan.com/)，它的代码在 [这里](https://github.com/hsiaosiyuan0/JSXX/tree/master/test/browser)
