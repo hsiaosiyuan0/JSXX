@@ -54,4 +54,5 @@ node_modules
 src/antlr4/*.tokens
 src/antlr4/gen/*
 !src/antlr4/gen/.gitkeep
+!src/antlr4/gen/*.js
 dist
