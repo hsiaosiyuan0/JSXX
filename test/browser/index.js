@@ -67,12 +67,15 @@ function run () {
     }
   }
 
+  console.time("Render")
   const vnode = res.render(ctx, h)
   console.groupCollapsed("VNode:")
   console.log(JSON.stringify(vnode, null, 2))
   console.groupEnd()
 
   const node = createElement(vnode)
+  console.timeEnd("Render")
+  
   out.innerHTML = ""
   out.appendChild(node)
 }
