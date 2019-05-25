@@ -9,15 +9,15 @@ const ctx = {
   classNum: "CS01",
   students: [{
     name: "Tom",
-    sex: 1,
+    gender: 1,
     age: 20
   }, {
     name: "Jim",
-    sex: 1,
+    gender: 1,
     age: 19
   }, {
     name: "Liza",
-    sex: 0,
+    gender: 0,
     age: 18
   }],
   sayHi (name) {
