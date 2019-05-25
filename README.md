@@ -4,9 +4,9 @@ This is a template engine works similarly with JSX but provides extra syntax ele
 
 This engine also compiles template contents to a render function which returns vdom to represent the structure of template.
 
-Vue.js also compiles it's templates but it uses [with](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with) in the object code. We know `with` can's be used in [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode).
+Vue.js also compiles it's templates but it uses [with](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with) in the object code. We know `with` can't be used in [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode).
 
-This implementation will analyze the scopes of variables to find out which are referred from outer scopes, local or global. Global variables will prefixed with `__ctx__.` to be a MemberExpression, `__ctx__` is resolved from the first argument of the render function.
+This implementation will analyze the scope of variables to find out which are referred from outer scopes, local or global. Global variables will prefixed with `__ctx__.` to be a MemberExpression, `__ctx__` is resolved from the first argument of the render function.
 
 For example, there is a template like below：
 
