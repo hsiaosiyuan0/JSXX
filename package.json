@@ -4,14 +4,17 @@
   "description": "A template engine similar with JSX and supports more flexible statements.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo": "webpack-dev-server --config test/browser/webpack.config.js --open"
   },
   "author": "hsiaosiyuan0",
   "license": "MIT",
   "dependencies": {
+    "shortid": "^2.2.8"
+  },
+  "devDependencies": {
     "antlr4": "^4.7.0",
     "babel-core": "^6.25.0",
-    "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -19,18 +22,17 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "del": "^3.0.0",
-    "eslint": "^4.2.0",
-    "eslint-loader": "^1.9.0",
-    "gulp": "gulpjs/gulp.git#4.0",
+    "gulp": "^4.0.2",
     "gulp-babel": "^6.1.2",
     "gulp-newer": "^1.3.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-util": "^3.0.8",
-    "shortid": "^2.2.8",
-    "webpack": "^3.3.0"
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hsiaosiyuan0/JSXX.git"

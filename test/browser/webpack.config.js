@@ -1,9 +1,10 @@
-let path = require("path")
-let projectRoot = path.resolve(__dirname, "../..")
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const projectRoot = path.resolve(__dirname, "../..");
 
 module.exports = {
   entry: path.join(projectRoot, "test/browser/index.js"),
-  // watch: true,
+  mode: "development",
   devtool: "source-map",
   resolve: {
     extensions: [".js"]
@@ -13,16 +14,23 @@ module.exports = {
     filename: "app.js"
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ["babel-loader", "eslint-loader"],
-      include: projectRoot,
-      exclude: /node_modules/
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        loaders: ["babel-loader"],
+        include: projectRoot,
+        exclude: /node_modules/
+      }
+    ]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(projectRoot, "test/browser/index.html")
+    })
+  ],
   node: {
     module: "empty",
     net: "empty",
     fs: "empty"
   }
-}
+};

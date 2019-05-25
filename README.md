@@ -1,22 +1,20 @@
 # About
 
-该模板具有类似 JSX 的语法，不同的是它提供了更为丰富的语句，比如 `for` 和 `if`
+This is a template engine works similarly with JSX but provides extra syntax elements like `for` and `if`.
 
-与 JSX 类似，该模板引擎并不在运行时进行模板的解析，而是采用编译的方式，将模板内容编译为与之对应的 render function
+This engine also compiles template contents to a render function which returns vdom to represent the structure of template.
 
-好像 Vue 的模板也提供了预编译的功能，不过 Vue 模板编译产生的 render function 中会使用 `with` 语句来绑定其中的变量，而在 `strict`
-模式下，`with` 语句是不能使用的
+Vue.js also compiles it's templates but it uses [with](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with) in the object code. We know `with` can's be used in [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode).
 
-所以该模板引擎在编译的过程中，会分析变量的作用域，来决定哪些变量是 "全局" 的，哪些是继承于父级作用域的，对于 "全局" 的变量，会自动的
-将其编译为 `__ctx__.variable` 的形式，这样在调用生成的模板函数时，只需将上下文作为参数传入即可
+This implementation will analyze the scopes of variables to find out which are referred from outer scopes, local or global. Global variables will prefixed with `__ctx__.` to be a MemberExpression, `__ctx__` is resolved from the first argument of the render function.
 
-比如有如下的模板：
+For example, there is a template like below：
 
 ```html
 <h3>{ title }</h3>
 ```
 
-会生成类似下面的 render function:
+will produce render function:
 
 ```js
 function render (__ctx__) {
@@ -24,7 +22,9 @@ function render (__ctx__) {
 }
 ```
 
-调用方式为:
+We see `title` is resolved as global so it's prefixed with `__ctx__.`.
+
+Finally we could use the render function like:
 
 ```js
 const vnode = render({
@@ -32,7 +32,7 @@ const vnode = render({
 })
 ```
 
-再来一个复杂一点的例子，比如有如下模板:
+Another more complex example:
 
 ```html
 <div>
@@ -50,7 +50,7 @@ const vnode = render({
 </div>
 ```
 
-会生成类似下面的 render function:
+will produce render function:
 
 ```js
 function render (__ctx__, h) {
@@ -82,4 +82,10 @@ function render (__ctx__, h) {
 }
 ```
 
-这是一个在浏览器中使用该模板的 [例子](http://jsxx.hsiaosiyuan.com/)，它的代码在 [这里](https://github.com/hsiaosiyuan0/JSXX/tree/master/test/browser)
+## Demo
+
+Here are the steps to run a local demo:
+
+1. `npm install`
+2. `npm run demo`
+3. Open browser console to see what are the outputs.
